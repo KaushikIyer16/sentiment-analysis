@@ -64,6 +64,7 @@ def analyzeWithoutNeutral(dayMessages):
         daySentimentDistribution[k] = daySentimentDistribution[k]/total
     return daySentimentDistribution
 
+
 def getDistribution(messages):
     dayMessages = defaultdict(list)
     for index in tqdm(range(len(messages))):
@@ -101,8 +102,9 @@ if __name__ == "__main__":
     fileName = sys.argv[-1] if "--file" in sys.argv else "data/data.json"
     messages = getDataFromFile(fileName)
     dayMessageDistribution = getDistribution(messages)
-    # switch with analyzeWithoutNeutral(dayMessageDistribution) to exclude neutral
-    daySentimentDistribution = analyze(dayMessageDistribution)
+
+    daySentimentDistribution = analyzeWithoutNeutral(
+        dayMessageDistribution) if "--exclude-neutral" else analyze(dayMessageDistribution)
     if "--trace" in sys.argv:
         for k, v in daySentimentDistribution.items():
             print("date: ", k, " sentiment score (between -1 and 1): ", v)

@@ -19,6 +19,7 @@ The package is developed on Python 3.8.9 environment and uses APIs and methods t
 * `analyzer.py` takes in a certain set of options (check out [How to run](#how-to-run)) and generates a line graph to show the average sentiment on a daily basis and the number of messages that contain any mention of **SHIB** or **DOGE**.
 
 * I have used the NLTK Vader Lexicon Sentiment Intensity Analyzer to compute the sentiment of each text message. I also saw `FLAIR` but liked the APIs that Vader provided, so I decided to move forward with Vader.
+
 ### Dependent packages
 
 * nltk
@@ -31,6 +32,13 @@ The package is developed on Python 3.8.9 environment and uses APIs and methods t
 - Enable Python virtual Environment
 
       source bin/activate
+
+- Install dependencies
+
+      pip3 install -r requirements.txt
+
+  or
+      pip install -r requirements.txt
 
 - Go to src folder
 
@@ -50,13 +58,17 @@ The package is developed on Python 3.8.9 environment and uses APIs and methods t
 
     python3 analyzer.py --trace
 
-- to specify a particular file use the --file option with the fileName as the last argument to the script, eg: `data_may.json` under the data folder
+- to specify a particular file use the --file option with the fileName as the last argument to the script, eg: `data_may.json` (telegram chats for the entire month of may 2021) under the data folder
 
     python3 analyzer.py --file ./data/data_may.json
 
 - A combination of both `--trace` and `--file` can be seen below:
 
     python3 analyzer.py --trace --file ./data/data_may.json
+
+- To exclude all messages with neutral sentiment from the average pass the `--exclude-neutral` option
+
+    python3 analyzer.py --exclude-neutral
 ## Observations
 
 - Many telegram chats have neutral sentiments and I have considered these in the average sentiment. I have calculated the average sentiment using the below formula
@@ -65,6 +77,8 @@ The package is developed on Python 3.8.9 environment and uses APIs and methods t
 average = sum(compound polarity score)/number of messages
 ```
 I am summing up the compound polarity score from the NLTK Vader model.
+
+- methods `analyze` and `analyzeWithoutNeutral` are executed to get the average sentiment distribution.
 
 * Following is the plot of day vs average sentiment and number of messages over the period of May 1st to May 15th
 
