@@ -100,6 +100,8 @@ I am summing up the compound polarity score from the NLTK Vader model.
 
 <br /><center><img src="./output/output_whole_month.png"><br />
 
+* NLTK Vader would not be able to recognize text messages in hindi transliterated to english. I could observe a lot of such english messages whose sentiment would be positive/negative in hindi. One additional data processing step could be to try to translate the text to english. I have not developed this step as I am wary if the translations would be accurate.
+
 * the sentiment analysis if we were to exclude all neutral messages are as shown below:
 
 <br /><center><img src="./output/output_without_neutral.png"><br />
