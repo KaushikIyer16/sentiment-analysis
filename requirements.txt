@@ -1,0 +1,4 @@
+nltk
+demoji
+tqdm
+plotly==5.4.0
