@@ -68,7 +68,7 @@ I am summing up the compound polarity score from the NLTK Vader model.
 
 * Following is the plot of day vs average sentiment and number of messages over the period of May 1st to May 15th
 
-![output_plot]("./output/output.png")
+![output_plot]("https://github.com/KaushikIyer16/sentiment-analysis/blob/main/output/output.png")
 
 * The following are the data cleaning and preprocessing cases handled:
   * Filter out all messages that do not have `shib` and `doge` in any portion of the string.
@@ -83,6 +83,8 @@ I am summing up the compound polarity score from the NLTK Vader model.
 
 * I have also tried to execute the same script to chats spanning for the entire month of May to check if it corroborates with the trend specified [here](https://en.ethereumworldnews.com/shiba-inus-shib-social-sentiment-drops-to-bearish-territory/). The output is seen below
 
-![output_plot]("./output/output_whole_month.png")
+![output_plot]("https://github.com/KaushikIyer16/sentiment-analysis/blob/main/output/output_whole_month.png")
 
 * the sentiment analysis if we were to exclude all neutral messages are as shown below:
+
+![output_plot]("https://github.com/KaushikIyer16/sentiment-analysis/blob/main/output/output_without_neutral.png")

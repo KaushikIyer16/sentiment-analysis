@@ -51,6 +51,19 @@ def analyze(dayMessages):
     return daySentimentDistribution
 
 
+def analyzeWithoutNeutral(dayMessages):
+    daySentimentDistribution = defaultdict(float)
+    for k, v in dayMessages.items():
+        total = 0
+        for message in v:
+            score = analyzer.polarity_scores(message)["compound"]
+            if score != 0:
+                daySentimentDistribution[k] += analyzer.polarity_scores(message)[
+                    "compound"]
+                total += 1
+        daySentimentDistribution[k] = daySentimentDistribution[k]/total
+    return daySentimentDistribution
+
 def getDistribution(messages):
     dayMessages = defaultdict(list)
     for index in tqdm(range(len(messages))):
@@ -88,6 +101,7 @@ if __name__ == "__main__":
     fileName = sys.argv[-1] if "--file" in sys.argv else "data/data.json"
     messages = getDataFromFile(fileName)
     dayMessageDistribution = getDistribution(messages)
+    # switch with analyzeWithoutNeutral(dayMessageDistribution) to exclude neutral
     daySentimentDistribution = analyze(dayMessageDistribution)
     if "--trace" in sys.argv:
         for k, v in daySentimentDistribution.items():
